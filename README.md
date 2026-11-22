@@ -8,6 +8,31 @@
 
 ## 架构关系
 
+```mermaid
+flowchart LR
+    subgraph H5["1.x H5 训练游戏（纯静态，双击即玩）"]
+        PAGES["17 个乐器训练页<br/>main.js / instrument_models.js<br/>vexflow_engine.js"]
+        SYNC["report_sync.js<br/>（增量挂载，引擎零改动）"]
+        PAGES --> SYNC
+    end
+    subgraph BE["2.0 Spring Boot 3 后端"]
+        AUTH["AuthController<br/>JWT 双角色鉴权"]
+        TASK["TaskController<br/>任务 + 完成人数"]
+        REC["RecordController<br/>成绩提交/查询"]
+        STU["StudentController<br/>统计卡"]
+        SVC["Service 层<br/>RecordService / TaskService"]
+        REPO["JPA Repository"]
+        AUTH --> SVC
+        TASK --> SVC
+        REC --> SVC
+        STU --> SVC
+        SVC --> REPO
+    end
+    DB[("PostgreSQL 17<br/>orc-postgres @55434<br/>JSONB 成绩 + daily_stats")]
+    SYNC -- "POST /api/records" --> REC
+    REPO --> DB
+```
+
 ```
 1.x  H5 训练页（17 个乐器训练页，纯静态，双击 index.html 即玩）
       │  训练结束自动 POST（report_sync.js 增量挂载，游戏引擎零改动）
@@ -73,3 +98,11 @@ docker compose down
 - 1.x 游戏本体以 `baseline-v1` 标签快照入库（`K:\KOUzi` 原目录零修改，42 文件与时间戳逐项核对一致）。
 - 2.0 后端为新增模块；前端仅新增 `report_sync.js` 增量脚本挂载 17 个训练页，**原游戏引擎一行未改**。
 - 本开发仓的完整提交历史（C1~C5）在内部开发存档中保留；本发布仓为公开白名单版本。
+
+## 开发方式与 AI 协作声明
+
+本项目 1.x 游戏为作者自研作品；2.0 后端由作者设计、并**与 AI Agent（Claude Code / Codex）协作开发**：
+任务拆解、代码实现、测试编写与演示验证在 AI 协作下完成，全部提交与测试证据保留于内部开发存档（HANDOFF.md）。
+仓库内容为作者本人所有并经人工验收；无上游仓库。
+
+**GitHub Topics 建议**：`spring-boot` `jwt` `jsonb` `postgresql` `h5-game` `flyway` `sight-reading` `education-game`

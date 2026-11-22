@@ -1,0 +1,36 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: orchestra
+          POSTGRES_USER: orchestra
+          POSTGRES_PASSWORD: orchestra
+        ports:
+          - 55434:5432
+        options: >-
+          --health-cmd "pg_isready -U orchestra -d orchestra"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:55434/orchestra
+      APP_JWT_SECRET: ci-zero-secret-credentials-0123456789abcdef
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Run tests
+        run: mvn -s .mvn-settings.xml -f backend/pom.xml test
