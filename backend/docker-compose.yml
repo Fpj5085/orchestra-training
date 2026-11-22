@@ -26,7 +26,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://orc-postgres:5432/orchestra
       SPRING_DATASOURCE_USERNAME: orchestra
       SPRING_DATASOURCE_PASSWORD: orchestra
-      APP_JWT_SECRET: ${ORC_JWT_SECRET:-orchestra-training-p1-secret-key-please-rotate-0123456789abcdef}
+      APP_JWT_SECRET: ${ORC_JWT_SECRET:-orc-local-demo-secret-please-rotate-0123456789abcdef}
     volumes:
       - ./target/orchestra-training-0.1.0.jar:/app.jar:ro
     command: ["java", "-jar", "/app.jar"]
