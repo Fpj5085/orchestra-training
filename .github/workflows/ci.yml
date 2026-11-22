@@ -33,4 +33,4 @@ jobs:
           java-version: '21'
           cache: maven
       - name: Run tests
-        run: mvn -s .mvn-settings.xml -f backend/pom.xml test
+        run: mvn -s backend/.mvn-settings.xml -f backend/pom.xml test

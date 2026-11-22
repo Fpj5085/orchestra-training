@@ -1,0 +1,3 @@
+715597f C-GH1: zero-secrets GitHub Actions CI (services postgres), mermaid architecture, AI collaboration statement, topics, SHA256SUMS, release handoff with staging deploy + 18/18 test verification
+f75681c chore: unify local-demo JWT fallback value across compose and application.yml
+81e1a52 baseline: public release snapshot of Orchestra Sight-Reading Training (1.x H5 game + 2.0 Spring Boot backend) — whitelist build excluding internal workspaces; MIT LICENSE (code only, asset licenses listed separately); JWT secret via APP_JWT_SECRET env with local-demo default; README with asset credits (Soundimage attribution, Kenney CC0, AI-generated imagery) and secondary-dev boundary
