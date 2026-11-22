@@ -353,3 +353,16 @@ C5-R 期间本机 maven/mvnw 不可得、红色警报禁止 docker，未能再�
 ### GO 自评
 
 GO：白名单提取干净（653.7MB→77.3MB，排除项零残留）、三类素材署名完整、JWT 环境变量化、18/18 测试复核通过、独立部署与闭环 API 验证通过、零密钥 CI 就绪、SHA256 清单生成。公开推送由项目作者确认后执行。
+
+## GitHub 发布（C-GH2，正式公开发布，2026-11-22）
+
+用户正式批准后执行，仅使用本审计通过发布仓。
+
+- **仓库**：https://github.com/Fpj5085/orchestra-training （Public，main 分支，git 历史 3 commit 起：baseline / JWT 统一 / CI+SHA256；未使用 --mirror/--all）
+- **Topics**：education-game, flyway, h5-game, jsonb, jwt, postgresql, sight-reading, spring-boot（gh repo edit 实设）
+- **线上核对证据**：docs/github-evidence/（repo.json / readme-online.json / license-online.json / audio-credits-online.json / workflow-online.json / topics.json / remote-log.txt / runs.txt / run-45042515178.txt）
+- **CI**：首跑失败（settings 路径相对仓根，28s）→ 修复 → **run 45042515178 全绿 57s**（services postgres 零密钥路径真实触发）；https://github.com/Fpj5085/orchestra-training/actions/runs/45042515178 ；修复后 README 加 CI 徽章。
+- **clone 独立验证**：gh clone 到 K:\Fpj Project\tmp-clone-c（067f77c，含徽章）；宿主 jar 构建（含一次中断构建的 0 字节 jar/目录化残留清理）→ compose up（orc-postgres healthy @55434 + orc-backend @8083）→ 控制台 200、教师登录 OK → Docker Maven mvn test **18/18 exit 0**（mvn 复跑为 mvnw 的等效替代，本仓无 wrapper，标注）→ student.html/auth.html 静态 200。
+- **JWT**：线上 workflow 与 compose 均环境变量注入（CI 零密钥值 ci-zero-secret-credentials-* / 本地演示默认值），无真实凭据公开。
+- **Tag/Release**：tag v1.0.0（annotated，发布说明）已推送；Release https://github.com/Fpj5085/orchestra-training/releases/tag/v1.0.0 附 notes 与 SHA256SUMS.txt。
+- 本仓本地配置 git 身份 Feng Pinjun / fengpinjun@local（仅仓库级）。

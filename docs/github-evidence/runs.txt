@@ -1,0 +1,3 @@
+completed	success	docs: add CI badge (workflow green on services-postgres zero-secrets …	CI	main	push	45042669535	35s	2026-11-22T16:14:06Z
+completed	success	fix CI: settings file path relative to repo root	CI	main	push	45042515178	1m1s	2026-11-22T16:12:27Z
+completed	failure	C-GH1: zero-secrets GitHub Actions CI (services postgres), mermaid ar…	CI	main	push	45042268381	28s	2026-11-22T16:09:50Z
