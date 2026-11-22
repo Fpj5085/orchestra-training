@@ -1,5 +1,7 @@
 # 乐团识谱训练平台（Orchestra Sight-Reading Training）
 
+[![CI](https://github.com/Fpj5085/orchestra-training/actions/workflows/ci.yml/badge.svg)](https://github.com/Fpj5085/orchestra-training/actions/workflows/ci.yml)
+
 一个自研的纯前端 H5 识谱训练游戏（1.x，乐团真实在用）+ 一个为它补上的 Spring Boot 3 后端（2.0）：
 账号与 JWT 双角色鉴权（教师/学生）、班级与邀请码、训练任务下发、成绩 JSONB 持久化、每日统计——
 **前端以增量脚本接入，原游戏引擎一行未改**。
