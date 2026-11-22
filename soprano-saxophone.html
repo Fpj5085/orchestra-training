@@ -1,0 +1,115 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>高音萨克斯识谱训练室</title>
+  <link rel="stylesheet" href="./style.css?v=20260714-keyboard1">
+</head>
+<body>
+  <div class="app-shell" id="appShell">
+    <header class="top-bar" aria-label="任务状态">
+      <section class="mission-id" aria-label="当前任务">
+        <span class="eyebrow" id="missionEyebrow">SOPRANO SAX SIGHT READING</span>
+        <h1 id="pageTitle">高音萨克斯识谱训练室</h1>
+        <p id="missionMeta">Soprano Saxophone / Treble Clef / Fingering Control</p>
+        <a class="home-link" href="./index.html"><span>EXIT</span><strong>返回乐团大厅</strong></a>
+      </section>
+
+      <section class="timer-panel" aria-live="polite">
+        <span class="panel-label">COUNTDOWN</span>
+        <strong id="countdown">00:30.0</strong>
+        <span id="gameStateLabel">待命</span>
+      </section>
+
+      <section class="pressure-panel" id="pressurePanel" aria-label="指挥 NPC 血压槽">
+        <div class="conductor-portrait" id="conductorPortrait" data-mood="happy" aria-label="指挥 NPC 状态头像" role="img">
+          <span>CONDUCTOR</span>
+        </div>
+        <div class="pressure-head">
+          <span class="panel-label">BLOOD PRESSURE</span>
+          <strong id="bloodPressureText">20%</strong>
+        </div>
+        <div class="pressure-track" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" aria-label="指挥血压">
+          <div class="pressure-fill" id="bloodPressureFill"></div>
+        </div>
+        <span class="conductor-line" id="conductorLine">指挥还在微笑，暂时。</span>
+      </section>
+    </header>
+
+    <main class="game-grid">
+      <section class="score-zone" aria-label="动态五线谱">
+        <div class="score-toolbar">
+          <div>
+            <span class="panel-label" id="scoreClefLabel">BASS CLEF SCAN</span>
+            <strong id="currentTarget">等待训练指令</strong>
+          </div>
+          <div class="pulse-readout" aria-label="节奏脉冲">
+            <span id="beatReadout">Beat 0</span>
+            <div class="pulse-ring" id="pulseRing"></div>
+          </div>
+        </div>
+        <div class="score-viewport" id="scoreViewport">
+          <svg id="scoreSvg" class="score-svg" role="img" aria-label="滚动五线谱谱面"></svg>
+          <div class="hit-line" aria-hidden="true"></div>
+          <div class="scanline" id="scanline" aria-hidden="true"></div>
+        </div>
+        <div class="judgement-strip" id="judgementStrip" aria-live="polite">
+          <span id="judgementText">按下 START 后，在扫描线附近点击正确按键组合。</span>
+        </div>
+      </section>
+
+      <aside class="diagnostic-panel" aria-label="实时诊断">
+        <div class="stat-row"><span>命中</span><strong id="hitsText">0</strong></div>
+        <div class="stat-row"><span>Miss</span><strong id="missText">0</strong></div>
+        <div class="stat-row"><span>错误</span><strong id="wrongText">0</strong></div>
+        <div class="stat-row"><span>Combo</span><strong id="comboText">0</strong></div>
+        <div class="control-stack">
+          <button id="startButton" class="primary-button" type="button">START</button>
+          <button id="restartButton" class="ghost-button" type="button">RESET</button>
+        </div>
+      </aside>
+    </main>
+
+    <section class="position-deck" id="positionDeck" aria-label="高音萨克斯指法组合控制台">
+      <div class="deck-title">
+        <span class="panel-label" id="deckLabel">SOPRANO SAX FINGERING MATRIX</span>
+        <strong id="deckTitle">高音萨克斯指法组合控制台</strong>
+      </div>
+      <div class="position-grid" id="positionGrid"></div>
+    </section>
+  </div>
+
+  <div class="modal hidden" id="resultModal" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+    <div class="modal-panel">
+      <span class="panel-label">TRAINING REPORT</span>
+      <h2 id="resultTitle">训练结束</h2>
+      <p id="resultSubtitle">本轮训练结束。</p>
+      <div class="report-summary" id="reportSummary"></div>
+      <details class="report-details">
+        <summary>开发者诊断数据</summary>
+        <pre id="reportJson" class="report-json"></pre>
+        <button id="copyReportButton" class="ghost-button developer-action" type="button">复制诊断数据</button>
+      </details>
+      <div class="modal-actions">
+        <a class="primary-button modal-home-button" href="./index.html">退出到大厅</a>
+        <button id="playAgainButton" class="ghost-button" type="button">再来一次</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.REHEARSAL_GAME_CONFIG = { instrumentId: "sopranoSaxophone" };
+  </script>
+  <script src="./instrument_models.js?v=20260624-instruments3"></script>
+  <script src="./rhythm_validator.js"></script>
+  <script src="./report_generator.js?v=20260714-keyboard1"></script>
+  <script src="./vexflow_engine.js?v=20260624-instruments3"></script>
+  <script src="./audio_manager.js?v=20260624-audio4"></script>
+  <script src="./main.js?v=20260714-keyboard1"></script>
+  <script src="./nav_transition.js?v=20260623-transition2"></script>
+  <script src="report_sync.js"></script>
+</body>
+</html>
+
+

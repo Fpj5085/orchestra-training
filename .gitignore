@@ -1,0 +1,21 @@
+# build
+backend/target/
+target/
+
+# local env & secrets
+.env
+.env.local
+*.env
+
+# logs
+*.log
+
+# ide
+.idea/
+*.iml
+.vscode/
+
+# runtime data
+orc-pgdata/
+__pycache__/
+.DS_Store

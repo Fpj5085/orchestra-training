@@ -1,0 +1,37 @@
+services:
+  orc-postgres:
+    image: postgres:17-alpine
+    container_name: orc-postgres
+    environment:
+      POSTGRES_DB: orchestra
+      POSTGRES_USER: orchestra
+      POSTGRES_PASSWORD: orchestra
+    ports:
+      - "55434:5432"
+    volumes:
+      - orc-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orchestra -d orchestra"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  orc-backend:
+    image: docker.m.daocloud.io/library/eclipse-temurin:21-jre
+    container_name: orc-backend
+    depends_on:
+      orc-postgres:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://orc-postgres:5432/orchestra
+      SPRING_DATASOURCE_USERNAME: orchestra
+      SPRING_DATASOURCE_PASSWORD: orchestra
+      APP_JWT_SECRET: ${ORC_JWT_SECRET:-orchestra-training-p1-secret-key-please-rotate-0123456789abcdef}
+    volumes:
+      - ./target/orchestra-training-0.1.0.jar:/app.jar:ro
+    command: ["java", "-jar", "/app.jar"]
+    ports:
+      - "8083:8083"
+
+volumes:
+  orc-pgdata:

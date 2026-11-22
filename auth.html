@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta charset="utf-8"><title>学生登录 - 乐团识谱训练</title>
+<style>body{font-family:system-ui,sans-serif;max-width:420px;margin:80px auto;padding:0 16px}
+input,button{width:100%;padding:10px;margin:6px 0;box-sizing:border-box}
+button{cursor:pointer}#msg{min-height:20px;color:#555}</style></head>
+<body>
+<h2>乐团识谱训练 · 学生登录</h2>
+<p>登录后成绩将通过 report_sync.js 自动同步到训练平台后端。</p>
+<input id="username" placeholder="学号（演示：student01）">
+<input id="password" type="password" placeholder="密码（演示：student123）">
+<button id="loginBtn">登录并进入乐团大厅</button>
+<div id="msg"></div>
+<script>
+var API_BASE = localStorage.getItem('orc_api_base') || 'http://localhost:8083';
+document.getElementById('loginBtn').onclick = function () {
+  var msg = document.getElementById('msg');
+  msg.textContent = '登录中...';
+  fetch(API_BASE + '/api/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      username: document.getElementById('username').value.trim(),
+      password: document.getElementById('password').value,
+      role: 'STUDENT'
+    })
+  }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+    .then(function (res) {
+      if (!res.ok) { msg.textContent = '登录失败：' + (res.d.error || res.d.message || res.status); return; }
+      localStorage.setItem('orc_api_base', API_BASE);
+      localStorage.setItem('orc_token', res.d.token);
+      localStorage.setItem('orc_role', res.d.role);
+      localStorage.setItem('orc_me', res.d.username);
+      msg.textContent = '登录成功，正在跳转...';
+      location.href = 'index.html';
+    })
+    .catch(function (e) { msg.textContent = '后端不可达：' + e; });
+};
+</script>
+</body>
+</html>

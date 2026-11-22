@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta charset="utf-8"><title>乐团训练平台 2.0 教师控制台</title>
+<style>
+:root{--bg:#10141f;--panel:#1a2130;--line:#2a3550;--ink:#e8ecf7;--sub:#8fa0c5;--gold:#ffc857;--ok:#4cd97b}
+body{font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink);max-width:980px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:20px;color:var(--gold);margin:8px 0 16px}
+h2{font-size:14px;color:var(--sub);text-transform:uppercase;letter-spacing:.08em;margin:0}
+fieldset{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin:14px 0;padding:12px 14px}
+legend{color:var(--gold);font-size:13px;padding:0 6px}
+input,select,button{font:inherit}
+input,select{background:#0d1119;border:1px solid var(--line);border-radius:6px;color:var(--ink);padding:7px 10px;margin:2px 4px 2px 0;width:200px}
+button{background:var(--gold);color:#1a1400;border:0;border-radius:6px;padding:7px 14px;cursor:pointer;font-weight:600}
+button.ghost{background:transparent;color:var(--sub);border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
+th{color:var(--sub);text-align:left;border-bottom:1px solid var(--line);padding:6px 8px}
+td{border-bottom:1px solid #232c42;padding:6px 8px;word-break:break-all}
+tr:hover td{background:#202a40}
+pre{background:#0d1119;border:1px solid var(--line);border-radius:8px;padding:10px;overflow:auto;font-size:12px;max-height:260px}
+.cards{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+.card{flex:1;min-width:120px;background:#0d1119;border:1px solid var(--line);border-radius:10px;padding:12px}
+.card .v{font-size:22px;color:var(--gold);font-weight:700}
+.card .k{font-size:11px;color:var(--sub)}
+.badge{display:inline-block;background:#0d1119;border:1px solid var(--line);border-radius:999px;color:var(--ok);padding:2px 10px;font-size:12px;margin-left:8px}
+#who{color:var(--sub);font-size:13px}
+</style>
+</head>
+<body>
+<h1>乐团识谱训练平台 2.0 — 教师控制台</h1>
+<span id="who">未登录</span>
+
+<fieldset><legend>登录</legend>
+  角色 <select id="role"><option value="TEACHER">教师</option><option value="STUDENT">学生</option></select>
+  账号 <input id="username" placeholder="teacher01 / student01">
+  密码 <input id="password" type="password" placeholder="teacher123 / student123">
+  <button onclick="login()">登录</button>
+</fieldset>
+
+<fieldset><legend>班级</legend>
+  <button class="ghost" onclick="listClasses()">刷新班级列表</button>
+  <table id="classTable"><thead><tr><th>ID</th><th>班级</th><th>邀请码</th><th>教师</th></tr></thead><tbody></tbody></table>
+</fieldset>
+
+<fieldset><legend>训练任务</legend>
+  乐器 <input id="tInstrument" placeholder="trombone"> 标题 <input id="tTitle" placeholder="把位基本功">
+  要求 <input id="tReq" placeholder="低音谱号 1-7 把位"> 截止 <input id="tDeadline" placeholder="2026-12-31T23:59:59+08:00">
+  <button onclick="createTask()">发布任务</button>
+  <button class="ghost" onclick="listTasks()">刷新任务列表（含完成人数）</button>
+  <table id="taskTable"><thead><tr><th>ID</th><th>乐器</th><th>标题</th><th>截止</th><th>完成学生数</th></tr></thead><tbody></tbody></table>
+</fieldset>
+
+<fieldset><legend>学生成绩</legend>
+  学号 <input id="qStudent" placeholder="可空"> 乐器 <input id="qInstrument" placeholder="可空"> 任务ID <input id="qTask" placeholder="可空">
+  <button onclick="queryRecords()">按条件查询</button>
+  <table id="recordTable"><thead><tr><th>ID</th><th>学号</th><th>乐器</th><th>任务</th><th>分数</th><th>准确率</th><th>时长ms</th><th>提交时间</th></tr></thead><tbody></tbody></table>
+</fieldset>
+
+<fieldset><legend>单学生统计</legend>
+  学号 <input id="statStudent" placeholder="student01">
+  <button onclick="stats()">刷新统计卡</button>
+  <div class="cards">
+    <div class="card"><div class="v" id="cCount">-</div><div class="k">练习次数</div></div>
+    <div class="card"><div class="v" id="cAvg">-</div><div class="k">平均分</div></div>
+    <div class="card"><div class="v" id="cBest">-</div><div class="k">最佳成绩</div></div>
+    <div class="card"><div class="v" id="cToday">-</div><div class="k">今日练习</div></div>
+  </div>
+  <table id="dailyTable"><thead><tr><th>日期</th><th>练习次数</th><th>平均分</th><th>最佳</th></tr></thead><tbody></tbody></table>
+</fieldset>
+
+<fieldset><legend>学生：提交成绩（模拟训练结算）</legend>
+  乐器 <input id="rInstrument" value="trombone"> 任务ID <input id="rTask" placeholder="可空">
+  分数 <input id="rScore" value="85"> 准确率 <input id="rAcc" value="0.9"> 时长ms <input id="rDur" value="30000">
+  <button onclick="submitRecord()">提交成绩</button> <button class="ghost" onclick="myRecords()">我的成绩</button>
+</fieldset>
+
+<pre id="out">就绪。</pre>
+<script src="console.js"></script>
+</body>
+</html>

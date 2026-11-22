@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Viola console art">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#202834"/>
+      <stop offset="1" stop-color="#493827"/>
+    </linearGradient>
+    <radialGradient id="wood" cx=".45" cy=".38" r=".72">
+      <stop offset="0" stop-color="#d89a48"/>
+      <stop offset=".58" stop-color="#8a4a22"/>
+      <stop offset="1" stop-color="#472616"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <path d="M0 640 C230 585 395 710 600 640 C825 562 990 515 1200 575 L1200 800 L0 800 Z" fill="#83d8c6" opacity=".18"/>
+  <g transform="translate(195 80) rotate(-11 420 330)">
+    <path d="M365 160 C277 78 145 162 185 284 C113 345 124 498 246 533 C262 675 468 681 486 533 C616 494 626 343 548 283 C587 153 455 81 365 160 Z" fill="url(#wood)" stroke="#f4c06b" stroke-width="12"/>
+    <path d="M355 198 C333 255 333 459 355 520 M378 198 C400 255 400 459 378 520" fill="none" stroke="#3b2115" stroke-width="10" opacity=".65"/>
+    <ellipse cx="324" cy="356" rx="24" ry="62" fill="#2b1710"/>
+    <ellipse cx="409" cy="356" rx="24" ry="62" fill="#2b1710"/>
+    <rect x="341" y="525" width="52" height="108" rx="24" fill="#2a1710"/>
+    <rect x="346" y="35" width="42" height="168" rx="20" fill="#1c1210"/>
+    <path d="M312 38 C342 1 389 -8 428 24 C408 58 359 70 312 38 Z" fill="#21120f" stroke="#f4c06b" stroke-width="8"/>
+    <g stroke="#f9e8bf" stroke-width="5" stroke-linecap="round">
+      <path d="M348 52 L332 626"/>
+      <path d="M361 52 L355 630"/>
+      <path d="M376 52 L382 630"/>
+      <path d="M389 52 L406 626"/>
+    </g>
+    <rect x="301" y="496" width="130" height="22" rx="9" fill="#25120c"/>
+  </g>
+  <g fill="#f9f3df" font-family="Consolas, monospace" font-weight="700">
+    <text x="70" y="105" font-size="44">VIOLA</text>
+    <text x="72" y="154" font-size="24" opacity=".72">Alto clef string lab</text>
+  </g>
+</svg>

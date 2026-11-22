@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Clarinet console art">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16262c"/>
+      <stop offset="1" stop-color="#38464b"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#05080a"/>
+      <stop offset="0.5" stop-color="#141719"/>
+      <stop offset="1" stop-color="#000"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <path d="M0 610 C250 560 410 705 660 626 C860 562 1010 485 1200 526 L1200 800 L0 800 Z" fill="#f0c04a" opacity=".24"/>
+  <g transform="translate(160 105) rotate(-24 420 280)">
+    <rect x="405" y="40" width="105" height="575" rx="48" fill="url(#body)" stroke="#d9b75e" stroke-width="10"/>
+    <path d="M390 13 h135 l-19 56 h-97 Z" fill="#101417" stroke="#d9b75e" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M370 610 h175 l44 100 h-263 Z" fill="#080b0d" stroke="#d9b75e" stroke-width="12" stroke-linejoin="round"/>
+    <g fill="#f2d27b" stroke="#6b5526" stroke-width="8">
+      <circle cx="458" cy="150" r="28"/>
+      <circle cx="458" cy="230" r="28"/>
+      <circle cx="458" cy="310" r="28"/>
+      <circle cx="458" cy="390" r="28"/>
+      <circle cx="458" cy="470" r="28"/>
+      <circle cx="458" cy="550" r="28"/>
+    </g>
+    <g stroke="#f2d27b" stroke-width="16" stroke-linecap="round">
+      <path d="M350 185 h90"/>
+      <path d="M475 270 h110"/>
+      <path d="M338 435 h104"/>
+      <path d="M475 515 h120"/>
+    </g>
+  </g>
+  <g fill="#f9f3df" font-family="Consolas, monospace" font-weight="700">
+    <text x="70" y="105" font-size="44">CLARINET</text>
+    <text x="72" y="154" font-size="24" opacity=".72">Boehm fingering scan</text>
+  </g>
+</svg>
